@@ -7,18 +7,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <!-- Axios JavaScript -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <title> shannie's page :) </title>
   </head>
 
   <body>
-    <div class="jumbotron jumbotron-fluid">
+    <div class="container-fluid bg-light text-dark p-5 mb-3">
       <h1 class="display-4 text-center"> hello! :) </h1>
       <p class="display-6 text-center">
         my name is shannie and i'm a y2 IS student ~~ <br>
       </p>
-
       <ul class="nav justify-content-center">
         <li class="nav-item">
           <a class="nav-link text-secondary" href="https://t.me/shanniekwok"> telegram </a>
@@ -32,16 +34,27 @@
       </ul>
     </div>
 
-    <div class="container" style="margin-bottom: 50px">
+    <div class="container-fluid text-center p-5">
+      <!-- Populate quote here -->
+      <div id="quote"></div>
+      <button id="quotebutton" type="button" class="btn btn-outline-dark" onclick="displayRandomQuote()"> get random quote </button>
+    </div>
+
+    <div class="container">
       <div class="row">
 
-        <div class="col-sm-5">
-          <h2 class="display-6"> picture of me! </h2>
-          <img src="mypic.jpg" width='400'>
-        </div>
+        <div class="col col-lg-6">
 
-        <div class="col-sm-7">
-          <div class="container" style="margin-bottom: 20px">
+          <div class="container">
+            <h2 class="display-6"> picture of me! </h2>
+            <img src="mypic.jpg" style="width: 450px">
+            <p class="border mt-2" style="width: 450px">
+              hello! i'm currently 20 this year :) i was born on 10 june 2002, in singapore and was raised in singapore ever since!
+              i have an older sister who is 2 years older than me! she is also in smu, and is studying business, majoring in HR!
+            </p>
+          </div>
+
+          <div class="container">
             <h2 class="display-6"> fun facts about me! </h2>
             <ul>
               <li> i can use the chopsticks with both hands 😋🥢 </li>
@@ -53,7 +66,7 @@
 
           <div class="container">
             <h2 class="display-6"> my timetable! </h2>
-            <table class="table table-sm table-bordered">
+            <table class="table table-sm table-bordered text-center">
               <thead>
                 <tr>
                   <th scope="col"> Day / Time </th>
@@ -69,9 +82,9 @@
                 <tr>
                   <th scope="row"> 0815 - 1130 </th>
                   <td rowspan="3"> </td>
-                  <td> BPAS </td>
+                  <td> IS210 </td>
                   <td rowspan="3"> </td>
-                  <td> IDP </td>
+                  <td> IS211 </td>
                   <td> </td>
                 </tr>
     
@@ -79,84 +92,346 @@
                   <th scope="row"> 1200 - 1515 </th>
                   <td> </td>
                   <td rowspan="2"> </td>
-                  <td> AI and Humanity </td>
+                  <td> COR2221 </td>
                 </tr>
                 
                 <tr>
                   <th scope="row"> 1530 - 1845 </th>
-                  <td> WAD2 </td>
+                  <td> IS216 </td>
                   <td> </td>
                 </tr>
     
               </tbody>
             </table>
           </div>
-          
+
+        </div>
+
+        <div class="col col-lg-6">
+          <div class="container">
+            <h2 class="display-6"> my favourite travel destination! </h2>
+
+            <h4 class="display-8"> 🇳🇱 netherlands, amsterdam 🇳🇱 </h4>
+
+            <iframe width="528" height="297" src="https://www.youtube.com/embed/vuFygfMEUb8?autoplay=1&mute=1" 
+            title="Amsterdam Vlog | vintage shopping, canal boat ride, museums, & going out!"
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
+            gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+            <p class="lead text-center" style="width: 528px; padding-top: 2px"> 
+              i am excited to visit amsterdam beause my sister is currently on a 5 month long exchange in amsterdam
+              and i'm very excited to go visit her during the winter break 💗 from the pictures that my sister has
+              sent, the scenery always looks so calm and peaceful and i'm really looking forward to the serenity
+              of amsterdam in spite of its bustling city life
+            </p>
+
+            <h4 class="display-8"> photos from my sister! </h4>
+
+            <div id="carouselControl" class="carousel slide" data-bs-touch="false" style="width: 500px">
+                <div class="carousel-inner">
+            
+                    <!-- Item 1 -->
+                    <div class="carousel-item active">
+                        <img src="amsterdam1.JPG" class="d-block w-100" alt="amsterdam">
+                    </div>
+            
+                    <!-- Item 2 -->
+                    <div class="carousel-item">
+                        <img src="amsterdam2.JPG" class="d-block w-100" alt="amsterdam">
+                    </div>
+            
+                    <!-- Item 3 -->
+                    <div class="carousel-item">
+                        <img src="amsterdam3.JPG" class="d-block w-100" alt="amsterdam">
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="carousel-item">
+                      <img src="amsterdam4.JPG" class="d-block w-100" alt="amsterdam">
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="carousel-item">
+                      <img src="amsterdam5.JPG" class="d-block w-100" alt="amsterdam">
+                    </div>
+                </div>
+            
+                <!-- Previous Button -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselControl" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+            
+                <!-- Next Button -->
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselControl" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
 
         </div>
       </div>
+
+    <div class="row">
+  
+      <div class="col col-lg-6">
+        <div class="container" style="margin-bottom: 50px">
+
+          <h2 class="display-6"> friendship quiz! </h2>
+    
+          <form>
+    
+            <div class="form-group pb-4">
+              <label for="name"> your name: </label>
+              <input type="name" class="form-control" id="name" aria-describedby="name">
+            </div>
+    
+            <div class="form-group pb-4" id="sibling">
+              <label for="sibling"> i have: </label> <br>
+                <input type="radio" id="sister" name="sibling" value="sister">
+                <label for="sister"> a sister </label><br>
+    
+                <input type="radio" id="brother" name="sibling" value="brother">
+                <label for="brother"> a brother </label><br>
+    
+                <input type="radio" id="none" name="sibling" value="none">
+                <label for="none"> no siblings </label><br>
+            </div>
+    
+            <div class="form-group pb-4" id="food">
+              <label for="food"> i like to eat: </label> <br>
+                <input type="checkbox" id="chickenrice" name="food" value="chickenrice">
+                <label for="chickenrice"> chicken rice </label><br>
+    
+                <input type="checkbox" id="tomyum" name="food" value="tomyum">
+                <label for="tomyum"> tom yum </label><br>
+    
+                <input type="checkbox" id="chillicrab" name="food" value="chillicrab">
+                <label for="chillicrab"> chilli crab </label><br>
+    
+                <input type="checkbox" id="ramen" name="food" value="ramen">
+                <label for="ramen"> ramen </label><br>
+    
+                <input type="checkbox" id="durian" name="food" value="durian">
+                <label for="durian"> durian </label><br>
+            </div>
+    
+            <div class="form-group pb-4" id="region">
+              <label for="region"> i stay in the: </label> <br>
+              <select id="region" name="region" size="4" multiple>
+                <option value="north"> north </option>
+                <option value="central"> central </option>
+                <option value="east"> east </option>
+                <option value="west"> west </option>
+              </select>
+            </div>
+    
+            <div class="form-group pb-4">
+              <label for="message"> anything you want to say: </label> <br>
+              <textarea id="message" name="message" style="width:450px; height:200px;" onkeyup="displayWordCount()"> </textarea>
+              <b> wordcount: </b> <div id="wordcount" style="display: inline"> 0 </div> 
+            </div>
+    
+            <button type="button" class="btn btn-dark" onclick="checkAnswers()"> submit your answers! </button>
+
+            <!-- Populate results -->
+            <div id="result">
+            </div>
+
+          </form>
+        </div>  
+      </div>
+
+      <div class="col col-lg-6">
+
+        <h2 class="display-6"> my education journey! </h2>
+
+        <div class="container text-center">
+            <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-4">
+        
+                <!-- Column 1 -->
+                <div class="col p-2">
+                  <div class="card h-100">
+                    <img src="prisch.jpeg" class="card-img-top h-100" alt="northland primary school">
+                
+                    <div class="card-body">
+                        <h5 class="card-title"> northland primary school </h5>
+                        <p class="card-text">
+                            2009 - 2014
+                        </p>
+                    </div>
+                  </div>
+                </div>
+        
+                <!-- Column 2 -->
+                <div class="col p-2">
+                  <div class="card h-100">
+                    <img src="secsch.jpg" class="card-img-top h-100" alt="chij st. nicholas girls' school">
+                
+                    <div class="card-body">
+                        <h5 class="card-title"> chij st. nicholas girls' school </h5>
+                        <p class="card-text">
+                            2015 - 2018
+                        </p>
+                    </div>
+                  </div>
+                </div>
+        
+                <!-- Column 3 -->
+                <div class="col p-2">
+                  <div class="card h-100">
+                    <img src="jc.png" class="card-img-top h-100" alt="anglo-chinese junior college">
+                
+                    <div class="card-body">
+                        <h5 class="card-title"> anglo-chinese junior college </h5>
+                        <p class="card-text">
+                            2019 - 2020
+                        </p>
+                    </div>
+                  </div>
+                </div>
+        
+                <!-- Column 4 -->
+                <div class="col p-2">
+                  <div class="card h-100">
+                    <img src="uni.png" class="card-img-top h-100" alt="singapore management university">
+                
+                    <div class="card-body">
+                        <h5 class="card-title"> singapore management university </h5>
+                        <p class="card-text">
+                            2021 - 2025 (expected)
+                        </p>
+                    </div>
+                  </div>
+                </div>
+        
+            </div>
+        </div>
+
+      </div>
     </div>
 
-    <div class="container" style="margin-bottom: 50px">
+    <script>
 
-      <h2 class="display-6"> friendship quiz! </h2>
+      function displayRandomQuote() {
+        
+        // API Endpoint
+        let api_endpoint_url = "https://api.quotable.io/random"
+    
+        // Use Axios to call API asynchronously
+        axios.get(api_endpoint_url)
+        .then(response => {
+            let response_data = response.data
+            let content = response_data.content
+            let author = response_data.author
 
-      <form>
+            // fetch and modify HTML
+            let quote = document.getElementById("quote")
+            quote.innerHTML = `<figure>
+                                <blockquote class="blockquote">
+                                  <p> ${content} </p>
+                                </blockquote>
+                                <figcaption class="blockquote-footer">
+                                  ${author} 
+                                </figcaption>
+                              </figure>`
+        })
+    
+        .catch(error => {
+            console.log(error.message)
+        })
+        
+      }
 
-        <div class="form-group">
-          <label for="name"> your name: </label>
-          <input type="name" class="form-control" id="name" aria-describedby="name">
-        </div>
+      function displayWordCount() {
+        let message = document.getElementById("message")
+        let message_arr = message.value.split(" ").slice(1)
+        let word_counter = message_arr.length
 
-        <div class="form-group">
-          <label for="sibling"> i have: </label> <br>
-            <input type="radio" id="sister" name="sibling" value="sister">
-            <label for="sister"> a sister </label><br>
+        let word_count = document.getElementById("wordcount")
+        word_count.innerHTML = word_counter
+      }
 
-            <input type="radio" id="brother" name="sibling" value="brother">
-            <label for="brother"> a brother </label><br>
+      function checkAnswers() {
+        let name = document.getElementById("name").value
 
-            <input type="radio" id="none" name="sibling" value="none">
-            <label for="none"> no siblings </label><br>
-        </div>
+        let points = 0
 
-        <div class="form-group">
-          <label for="food"> i like to eat: </label> <br>
-            <input type="checkbox" id="chickenrice" name="food" value="chickenrice">
-            <label for="chickenrice"> chicken rice </label><br>
+        let siblings = document.getElementById("sibling").getElementsByTagName("input")
+        for (sibling of siblings) {
+          if (sibling.checked) {
+            if (sibling.id == "sister") {
+              points += 1
+            }
+            else {
+              points -= 1
+            }
+          }
+        }
 
-            <input type="checkbox" id="tomyum" name="food" value="tomyum">
-            <label for="tomyum"> tom yum </label><br>
+        let foods = document.getElementById("food").getElementsByTagName("input")
+        for (food of foods) {
+          if (food.checked) {
+            let food_name = food.id
+            console.log(food_name)
+            if (food_name == "chillicrab" || food_name == "durian") {
+              points -= 1
+            }
+            else {
+              points += 1
+            }
+          }
+        }
 
-            <input type="checkbox" id="chillicrab" name="food" value="chillicrab">
-            <label for="chillicrab"> chilli crab </label><br>
+        let regions = document.getElementById("region").getElementsByTagName("option")
+        for (region of regions) {
+          if (region.selected) {
+            if (region.value == "north") {
+              points += 1
+            }
+            else {
+              points -= 1
+            }
+          }
+        }
 
-            <input type="checkbox" id="ramen" name="food" value="ramen">
-            <label for="ramen"> ramen </label><br>
+        console.log(points)
 
-            <input type="checkbox" id="durian" name="food" value="durian">
-            <label for="durian"> durian </label><br>
-        </div>
+        // no negative points
+        if (points < 0) {
+          points = 0
+        }
 
-        <div class="form-group">
-          <label for="region"> i stay in the: </label> <br>
-          <select id="region" name="region" size="4" multiple>
-            <option value="north"> north </option>
-            <option value="central"> central </option>
-            <option value="east"> east </option>
-            <option value="west"> west </option>
-          </select>
-        </div>
+        let output = ""
 
-        <div class="form-group">
-          <label for="message"> anything you want to say: </label> <br>
-          <textarea name="message" style="width:600px; height:200px;"> 
-          </textarea>
-        </div>
+        output += `<br>
+                              <h4 class="display-8"> results: </h4>
+                              <b> hello ${name}! </b>
+                              <p> your score: ${points}/5
+                                <br>`
 
-        <button type="submit" class="btn btn-dark"> submit your answers! </button>
-      </form>
+        // display different outputs for different score range
+        if (points < 2) {
+          output += `let's get to know each other better! :) </p>`
+        }
+        else if (points == 3) {
+          output += `ooh u understand me q well! ;) </p>`
+        }
+        else {
+          output += `wow u know me so well! <3 </p>`
+        }
 
-    </div>
+        // fetch and tabulate HTML
+        let results = document.getElementById("result")
+        results.innerHTML += output
+
+      }
+
+    </script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+  </body>
 
 </html>

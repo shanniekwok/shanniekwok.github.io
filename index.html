@@ -34,27 +34,27 @@
       </ul>
     </div>
 
-    <div class="container-fluid text-center p-5">
+    <div class="container-fluid text-center p-3">
       <!-- Populate quote here -->
       <div id="quote"></div>
       <button id="quotebutton" type="button" class="btn btn-dark" onclick="displayRandomQuote()"> get random quote </button>
     </div>
 
-    <div class="container">
+    <div class="container p-3">
       <div class="row">
 
         <div class="col col-lg-6">
 
-          <div class="container">
+          <div class="container p-3">
             <h2 class="display-6"> picture of me! </h2>
-            <img src="mypic.jpg" style="width: 450px">
-            <p class="border mt-2" style="width: 450px">
+            <img src="mypic.jpg" style="max-width: 100%; width: 450px">
+            <p class="border mt-2" style="max-width: 100%; width: 450px">
               hello! i'm currently 20 this year :) i was born on 10 june 2002, in singapore and was raised in singapore ever since!
               i'm currently a year 2 student (struggling) in scis! i haven't picked my majors yet but am thinking of BA & DCS!
             </p>
           </div>
 
-          <div class="container">
+          <div class="container p-3">
             <h2 class="display-6"> fun facts about me! </h2>
             <ul>
               <li> i can use the chopsticks with both hands 😋🥢 </li>
@@ -64,17 +64,17 @@
             </ul>
           </div>
 
-          <div class="container">
+          <div class="container p-3">
             <h2 class="display-6"> my timetable! </h2>
-            <table class="table table-sm table-bordered text-center">
+            <table class="table table-sm table-bordered text-center" style="max-width: 100%;">
               <thead>
                 <tr>
                   <th scope="col"> Day / Time </th>
-                  <th scope="col"> Monday </th>
-                  <th scope="col"> Tuesday </th>
-                  <th scope="col"> Wednesday </th>
-                  <th scope="col"> Thursday </th>
-                  <th scope="col"> Friday </th>
+                  <th scope="col"> Mon </th>
+                  <th scope="col"> Tue </th>
+                  <th scope="col"> Wed </th>
+                  <th scope="col"> Thu </th>
+                  <th scope="col"> Fri </th>
                 </tr>
               </thead>
 
@@ -108,17 +108,17 @@
         </div>
 
         <div class="col col-lg-6">
-          <div class="container">
+          <div class="container p-3">
             <h2 class="display-6"> my favourite travel destination! </h2>
 
             <h4 class="display-8"> 🇳🇱 netherlands, amsterdam 🇳🇱 </h4>
 
-            <iframe width="528" height="297" src="https://www.youtube.com/embed/vuFygfMEUb8?autoplay=1&mute=1" 
+            <iframe style="max-width: 100%;" width="528" height="297" src="https://www.youtube.com/embed/vuFygfMEUb8?autoplay=1&mute=1" 
             title="Amsterdam Vlog | vintage shopping, canal boat ride, museums, & going out!"
             frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media;
             gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-            <p class="lead text-center" style="width: 528px; padding-top: 2px"> 
+            <p class="lead text-center" style="max-width: 100%; width: 528px; padding-top: 2px"> 
               i want to visit amsterdam because my sister is currently on a 5 month long exchange in amsterdam
               and i'm excited to go visit her during the winter break!! from the pictures, the scenery always
               looks so calm and peaceful and i'm really looking forward to the serenity of amsterdam ~
@@ -126,7 +126,7 @@
 
             <h4 class="display-8"> photos from my sister! </h4>
 
-            <div id="carouselControl" class="carousel slide" data-bs-ride="carousel" style="width: 500px">
+            <div id="carouselControl" class="carousel slide" data-bs-ride="carousel" style="max-width: 100%; width: 500px">
                 <div class="carousel-inner">
             
                     <!-- Item 1 -->
@@ -174,7 +174,7 @@
     <div class="row">
   
       <div class="col col-lg-6">
-        <div class="container" style="margin-bottom: 50px">
+        <div class="container p-3" style="margin-bottom: 50px">
 
           <h2 class="display-6"> friendship quiz! </h2>
     
@@ -227,7 +227,7 @@
     
             <div class="form-group pb-4">
               <label for="message"> anything you want to say: </label> <br>
-              <textarea id="message" name="message" style="width:450px; height:200px;" onkeyup="displayWordCount()"> </textarea>
+              <textarea id="message" name="message" style="max-width: 100%; width:450px; height:200px;" onkeyup="displayWordCount()"> </textarea>
               <br> <b> wordcount: </b> <div id="wordcount" style="display: inline"> 0 </div> 
             </div>
     

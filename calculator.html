@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> </title>
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+        <!-- Axios JavaScript -->
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+        <!-- Vue.js -->
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+        <style>
+            .nav-link {
+                color: black
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- Header -->
+        <div class="container-fluid bg-dark text-light p-3 text-center">
+            <h2 class="display-6 fw-bold"> ☺ shannie's calculator ☺ </h2>
+            <p> hello ! this calculator can help to split bills and calculate total cost ~~ </p>
+        </div>
+
+        <!-- Navlink Tabs -->
+        <div class="container p-3">
+
+            <!-- Display Nav items -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="split-tab" data-bs-toggle="tab" data-bs-target="#split-tab-pane" type="button" role="tab" aria-controls="split-tab-pane" aria-selected="true"> split by pax </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="cost-tab" data-bs-toggle="tab" data-bs-target="#cost-tab-pane" type="button" role="tab" aria-controls="cost-tab-pane" aria-selected="false"> total cost </button>
+                </li>
+            </ul>
+
+            <!-- Nav item content -->
+            <div class="tab-content" id="myTabContent">
+
+                <!-- Spit by pax -->
+                <div class="tab-pane fade show active" id="split-tab-pane" role="tabpanel" aria-labelledby="split-tab" tabindex="0"> 
+                    <form id="split-form" class="p-3">
+                        <div class="mb-3" id="inputText">
+                            <label for="amount" class="form-label"> total amount ($): </label>
+                            <input type="number" class="form-control" id="amount" aria-describedby="amount">
+                        
+                            <label for="people" class="form-label"> number of people: </label>
+                            <input type="number" class="form-control" id="people" aria-describedby="people">
+                        </div>
+
+                        <button type="button" class="btn btn-dark" onclick="split_evenly()"> split evenly! </button>
+                        <button type="button" class="btn btn-outline-secondary" onclick="reset_split_form()"> reset! </button>
+                        
+                    </form>
+
+                    <!-- Populate results here -->
+                    <div id="split-tab-output">
+                    </div>
+                </div>
+
+                
+                <!-- Total cost -->
+                <div class="tab-pane fade" id="cost-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+
+                    <form id="cost-form" class="p-3">
+
+                        <!-- Item -->
+                        <div id="all_items">
+
+                            <!-- Individual Item -->
+                            <div class="row g-3 align-items-center">
+                                <div class="col-6">
+                                    <label for="item" class="col-form-label"> name: </label>
+                                    <input type="text" class="form-control" id="item" aria-describedby="item" v-model="item_name">
+                                </div>
+                                <div class="col-6">
+                                    <label for="price" class="col-form-label"> price ($): </label>
+                                    <input type="number" class="form-control" id="price" aria-describedby="price" v-model="item_price">
+                                </div>
+                            </div>
+
+                            <br>
+
+                            <!-- Checkbox -->
+                            <div id="checkbox">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="checkbox1" id="checkbox1">
+                                    <label class="form-check-label" for="checkbox1">
+                                        include gst
+                                    </label>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-outline-dark mt-3" v-on:click="add_item()"> add items ! </button>
+
+                            <br><br>
+
+                            <p v-html="total_cost_text"></p>
+
+                            <br>
+
+                            <!-- Show all items -->
+                            <p v-html="text"></p>
+                            <ul>
+                                <li v-for="item of items"> {{ item.name }}: ${{ item.price }} </li>
+                            </ul>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        <!-- Bootstrap JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+
+        <!-- JavaScript -->
+        <script>
+            let split_output = document.getElementById("split-tab-output")
+            let cost_output = document.getElementById("cost-tab-output")
+
+            let count = 1
+            let total_cost = 0
+
+            function split_evenly() {
+                let amount = Number(document.getElementById("amount").value)
+                let pax =  Number(document.getElementById("people").value)
+
+                let cost_per_pax = (amount / pax).toFixed(2)
+
+                split_output.innerHTML = `<hr>
+                                            <b> hello ! ☺ </b> <br>
+                                            <b> amount to pay ($): ${cost_per_pax} </b>
+                                            <br><br>
+                                            total amount ($): ${amount} <br>
+                                            number of people: ${pax}
+                                            `
+            }
+
+            function reset_split_form() {
+                // reset form input
+                let form = document.getElementById("split-form")
+                form.reset()
+
+                // reset output
+                split_output.innerHTML = ""
+
+            }
+
+            // Vue
+            const root = Vue.createApp({
+                data() {
+                    return {
+                        items: [],
+                        item_name: "item",
+                        item_price: "",
+                        text: "",
+                        total_cost_text: ""
+                    }
+                },
+
+                methods: {
+
+                    add_item() {
+
+                        this.items.push({"name": this.item_name, "price": this.item_price})
+                        total_cost += Number(this.item_price)
+
+                        this.text = `list of items:`
+
+                        this.total_cost_text = `<hr>
+                                                hello ! ☺ <br>`
+
+                        let checkbox = document.getElementById("checkbox")
+                        let all_checkbox = checkbox.getElementsByTagName("input")
+
+                        for (check of all_checkbox) {
+                            if (check.checked) { // if a checkbox is checked, add gst
+                                total_cost *= 1.10 * 1.07
+                                total_cost = total_cost.toFixed(2)
+                                this.total_cost_text += `<b> total amount with gst ($): ${total_cost} </b>`
+                                }
+
+                            else {
+                                this.total_cost_text += `<b> total amount ($): ${total_cost} </b>`
+                            }
+                        }
+                    },
+
+                }
+
+            })
+
+            root.mount("#all_items")
+        </script>
+
+    </body>
+
+</html>

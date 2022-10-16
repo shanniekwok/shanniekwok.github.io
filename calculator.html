@@ -174,7 +174,6 @@
                     add_item() {
 
                         this.items.push({"name": this.item_name, "price": this.item_price})
-                        total_cost += Number(this.item_price)
 
                         this.text = `list of items:`
 
@@ -186,17 +185,16 @@
 
                         for (check of all_checkbox) {
                             if (check.checked) { // if a checkbox is checked, add gst
-                                total_cost *= 1.10 * 1.07
-                                total_cost = total_cost.toFixed(2)
-                                this.total_cost_text += `<b> total amount with gst ($): ${total_cost} </b>`
+                                total_cost += Number(this.item_price) * 1.10 * 1.07
+                                this.total_cost_text += `<b> total amount with gst ($): ${total_cost.toFixed(2)} </b>`
                                 }
 
                             else {
-                                this.total_cost_text += `<b> total amount ($): ${total_cost} </b>`
+                                total_cost += Number(this.item_price)
+                                this.total_cost_text += `<b> total amount ($): ${total_cost.toFixed(2)} </b>`
                             }
                         }
-                    },
-
+                    }
                 }
 
             })
